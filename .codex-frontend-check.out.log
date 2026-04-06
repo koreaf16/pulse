@@ -1,0 +1,7 @@
+
+> frontend@0.1.0 start C:\Dev\Pulse\frontend
+> next start --port 2000
+
+C:\Dev\Pulse\frontend:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  frontend@0.1.0 start: `next start --port 2000`
+Exit status 1

@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ============================================================
+ * Pulse Design System — Global CSS
+ * Tailwind v4 @theme configuration
+ * ============================================================ */
+
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* App background */
+  --color-app-bg: #FAFBFC;
+
+  /* Zone colors */
+  --color-z0: #0984E3;
+  --color-z0-light: #EBF5FF;
+  --color-z1: #00B894;
+  --color-z1-light: #E8FBF6;
+  --color-z2: #6C5CE7;
+  --color-z2-light: #F0EEFF;
+
+  /* Status colors */
+  --color-status-running: #00B894;
+  --color-status-error: #D63031;
+  --color-status-cooldown: #FDCB6E;
+  --color-status-stopped: #B2BEC3;
+  --color-status-running-bg: #E8FBF6;
+  --color-status-error-bg: #FFEAEA;
+  --color-status-cooldown-bg: #FFF8E6;
+  --color-status-stopped-bg: #F5F6FA;
+
+  /* Neutral */
+  --color-surface: #FFFFFF;
+  --color-border: #E8ECEF;
+  --color-text-primary: #1A1D23;
+  --color-text-secondary: #636E72;
+  --color-text-muted: #B2BEC3;
+}
+
+/* Base */
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-app-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  min-height: 100%;
+}
+
+/* Monospace numbers for data display */
+.font-data {
+  font-family: var(--font-geist-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Pipeline Live View animations ──────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.4); opacity: 0.7; }
+}
+@keyframes flowDash {
+  from { background-position: 0 0; }
+  to   { background-position: 30px 0; }
+}
+@keyframes packetTravel {
+  from { left: -10px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  to   { left: 100%; opacity: 0; }
+}
+@keyframes glowBlue {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(37,99,235,0.08), 0 8px 32px rgba(37,99,235,0.15); }
+  50%       { box-shadow: 0 0 0 8px rgba(37,99,235,0.15), 0 12px 48px rgba(37,99,235,0.25); }
+}
+@keyframes glowGreen {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(22,163,74,0.08), 0 8px 32px rgba(22,163,74,0.15); }
+  50%       { box-shadow: 0 0 0 8px rgba(22,163,74,0.18), 0 12px 48px rgba(22,163,74,0.28); }
+}
+@keyframes glowPurple {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(124,58,237,0.08), 0 8px 32px rgba(124,58,237,0.15); }
+  50%       { box-shadow: 0 0 0 8px rgba(124,58,237,0.18), 0 12px 48px rgba(124,58,237,0.28); }
+}
+@keyframes fillPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.8; }
+}
+@keyframes flowDashVertical {
+  from { background-position: 0 0; }
+  to   { background-position: 0 20px; }
+}
+@keyframes packetTravelV {
+  from { top: -10px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  to   { top: 100%; opacity: 0; }
+}
