@@ -61,7 +61,7 @@ export function Z1DashboardPage() {
         } else if (!dashboardRef.current) {
           setError('Z1 대시보드를 불러오지 못했습니다.');
         } else {
-          setError('새로고침에 실패해 마지막 정상 스냅샷을 표시합니다.');
+          setError('새로 고침에 실패해 마지막 정상 스냅샷을 유지합니다.');
         }
       });
 
@@ -83,16 +83,16 @@ export function Z1DashboardPage() {
 
       <PageHeader
         title="Z1 피처 신호"
-        description="BTC 기준으로 파생 지표, 거시 환경, 선물 수급, 뉴스 흐름을 요약합니다."
+        description="BTC 기준 파생 지표, 거시 환경, 선물 수급, 뉴스 흐름을 한 화면에서 요약합니다."
         zone="Z1"
         actions={
           <div className="flex flex-wrap items-center justify-end gap-2">
             {error && <span className="rounded-full bg-[#FEF2F2] px-3 py-1 text-xs text-[#B91C1C]">{error}</span>}
             <span className="rounded-full border border-[#D1FAE5] bg-white px-3 py-1 text-xs text-[#047857]">
-              {refreshing ? '새로고침 중' : '30초마다 갱신'}
+              {refreshing ? '새로 고침 중' : '30초마다 갱신'}
             </span>
             <Link href="/z1/explore" className="inline-flex items-center gap-2 rounded-lg bg-[#16A34A] px-3.5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-[#15803D]">
-              세부 데이터 보기
+              상세 데이터
             </Link>
           </div>
         }
@@ -112,9 +112,9 @@ export function Z1DashboardPage() {
         </>
       ) : (
         <div className="rounded-[28px] border-2 border-dashed border-[#CBD5E1] bg-white/80 px-6 py-16 text-center shadow-sm">
-          <p className="text-base font-semibold text-[#0F172A]">Z1 피처 결과를 기다리는 중입니다.</p>
+          <p className="text-[15px] font-semibold text-[#0F172A]">Z1 신호 결과를 기다리는 중입니다.</p>
           <p className="mt-2 text-[13px] text-[#64748B]">
-            피처 파이프라인이 첫 스냅샷을 기록하면 이 화면에 BTC 신호 요약이 표시됩니다.
+            파이프라인이 첫 스냅샷을 기록하면 이 화면에 BTC 신호 요약이 표시됩니다.
           </p>
         </div>
       )}

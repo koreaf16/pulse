@@ -24,6 +24,7 @@ import { PipelineStageFlow } from './pipeline-stage-flow';
 import { PipelineStorageStatus } from './pipeline-storage-status';
 import { PipelineSourcesTable } from './pipeline-sources-table';
 import { PipelineFooter } from './pipeline-footer';
+import { usePipelineLiveWebsocket } from './use-pipeline-live-websocket';
 
 export function PipelineLiveView() {
   const clockRef = useRef<HTMLSpanElement>(null);
@@ -117,33 +118,7 @@ export function PipelineLiveView() {
     return () => clearInterval(id);
   }, []);
 
-  useEffect(() => {
-    const ws = new WebSocket('ws://127.0.0.1:2002');
-
-    ws.onmessage = (event) => {
-      try {
-        const { type, payload } = JSON.parse(event.data) as { type: string; payload: Record<string, string> };
-        const timeStr = new Date().toLocaleTimeString('en-US', { hour12: false });
-
-        if ((type === 'candle_closed' || type === 'liquidation' || type === 'news_collected') && z0EvRef.current) {
-          z0EvRef.current.textContent = `${type.replaceAll('_', ' ')}: ${payload?.symbol ?? ''} @ ${timeStr}`;
-        } else if (type === 'features_computed' && z1EvRef.current) {
-          z1EvRef.current.textContent = `features computed @ ${timeStr}`;
-        } else if ((type === 'global_context_generated' || type === 'local_context_generated') && z2EvRef.current) {
-          const label = type === 'global_context_generated' ? 'global' : `local ${payload?.symbol ?? ''}`;
-          z2EvRef.current.textContent = `context built (${label}) @ ${timeStr}`;
-        }
-      } catch (err) {
-        console.error('WS message error:', err);
-      }
-    };
-
-    ws.onerror = (err) => {
-      console.error('WS error:', err);
-    };
-
-    return () => ws.close();
-  }, []);
+  usePipelineLiveWebsocket(z0EvRef, z1EvRef, z2EvRef);
 
   const z0FeatureSources = applyMetrics(Z0_FEATURE_SOURCES, tableMetrics);
   const z1Targets = applyMetrics(Z1_TARGETS, tableMetrics);
